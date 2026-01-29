@@ -1,0 +1,381 @@
+naftiko:
+  schema: >-
+    https://github.com/naftiko/schema/blob/main/core/capability/capabiity-schema.yml
+info:
+  name: Figma API & MCP Sandbox
+  description: >-
+    This is a Figma sandbox that uses OpenAPI, Microcks, Bruno, and Backstage to
+    provide a 3rd-party REST API and MCP sandbox for Figma.
+  tags:
+    - Projects
+    - Files
+    - Images
+    - Styles
+    - Images
+    - Teams
+ports:
+  source:
+    - aid: figma-sandbox
+      title: Figma Activity Logs API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        do that.
+      openApi:
+        - $ref: openapi/figma-activity-logs-api-openapi.yml
+    - aid: figma-sandbox
+      title: Figma Analytics API
+      description: >-
+        This is the OpenAPI specification for the [Figma REST
+        API](https://www.figma.com/developers/api) Analytics endpoints.Note: we
+        are releasing the OpenAPI specification as a beta given the large
+        surface area and complexity of the REST API.
+      openApi:
+        - $ref: openapi/figma-analytics-api-openapi.yml
+    - aid: figma-sandbox
+      title: Figma API
+      description: >-
+        This is the OpenAPI specification for the [Figma REST
+        API](https://www.figma.com/developers/api).Note: we are releasing the
+        OpenAPI specification as a beta given the large surface area and
+        complexity of the REST API. If you notice any inaccuracies with the
+        specification, please [file an
+        issue](https://github.com/figma/rest-api-spec/issues).
+      openApi:
+        - $ref: openapi/figma-api-openapi.yml
+    - aid: figma-sandbox
+      title: Figma Component Sets API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        do that.
+      openApi:
+        - $ref: openapi/figma-component-sets-api-openapi.yml
+    - aid: figma-sandbox
+      title: Figma Dev Resources API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        do that.
+      openApi:
+        - $ref: openapi/figma-dev-resources-api-openapi.yml
+    - aid: figma-sandbox
+      title: Figma Files API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        do that.
+      openApi:
+        - $ref: openapi/figma-files-api-openapi.yml
+    - aid: figma-sandbox
+      title: Figma Images API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        dothat.
+      openApi:
+        - $ref: openapi/figma-images-api-openapi.yml
+    - aid: figma-sandbox
+      title: Figma Me API
+      description: >-
+        This is the OpenAPI specification for the [Figma REST
+        API](https://www.figma.com/developers/api).
+      openApi:
+        - $ref: openapi/figma-me-api-openapi.yml
+    - aid: figma-sandbox
+      title: Figma Payments API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        dothat.
+      openApi:
+        - $ref: openapi/figma-payments-api-openapi.yml
+    - aid: figma-sandbox
+      title: Figma Projects API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        dothat.
+      openApi:
+        - $ref: openapi/figma-projects-api-openapi.yml
+    - aid: figma-sandbox
+      title: Figma Styles API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        dothat.
+      openApi:
+        - $ref: openapi/figma-styles-api-openapi.yml
+    - aid: figma-sandbox
+      title: Figma Teams API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        dothat.
+      openApi:
+        - $ref: openapi/figma-teams-api-openapi.yml
+virtualization:
+  sandboxes:
+    - name: Figma Activity Logs API REST Sandbox
+      type: http://localhost:8080/rest/figma-activity-logs-api/1.0.0
+    - name: Figma Activity Logs MCP Sandbox
+      type: http://localhost:8080/rest/figma-activity-logs-api/1.0.0/sse
+    - name: Figma Analytics API REST Sandbox
+      type: http://localhost:8080/rest/figma-analytics-api/1.0.0
+    - name: Figma Analytics MCP Sandbox
+      type: http://localhost:8080/rest/figma-analytics-api/1.0.0/sse
+    - name: Figma API REST Sandbox
+      type: http://localhost:8080/rest/figma-api/1.0.0
+    - name: Figma MCP Sandbox
+      type: http://localhost:8080/rest/figma-api/1.0.0/sse
+    - name: Figma Component Sets API REST Sandbox
+      type: http://localhost:8080/rest/figma-component-sets-api/1.0.0
+    - name: Figma Component Sets MCP Sandbox
+      type: http://localhost:8080/rest/figma-component-sets-api/1.0.0/sse
+    - name: Figma Dev Resources API REST Sandbox
+      type: http://localhost:8080/rest/figma-dev-resources-api/1.0.0
+    - name: Figma Dev Resources MCP Sandbox
+      type: http://localhost:8080/rest/figma-dev-resources-api/1.0.0/sse
+    - name: Figma Files API REST Sandbox
+      type: http://localhost:8080/rest/figma-files-api/1.0.0
+    - name: Figma Files MCP Sandbox
+      type: http://localhost:8080/rest/figma-files-api/1.0.0/sse
+    - name: Figma Images API REST Sandbox
+      type: http://localhost:8080/rest/figma-images-api/1.0.0
+    - name: Figma Images MCP Sandbox
+      type: http://localhost:8080/rest/figma-images-api/1.0.0/sse
+    - name: Figma Me API REST Sandbox
+      type: http://localhost:8080/rest/figma-me-api/1.0.0
+    - name: Figma Me MCP Sandbox
+      type: http://localhost:8080/rest/figma-me-api/1.0.0/sse
+    - name: Figma Payments API REST Sandbox
+      type: http://localhost:8080/rest/figma-payments-api/1.0.0
+    - name: Figma Payments MCP Sandbox
+      type: http://localhost:8080/rest/figma-payments-api/1.0.0/sse
+    - name: Figma Projects API REST Sandbox
+      type: http://localhost:8080/rest/figma-projects-api/1.0.0
+    - name: Figma Projects MCP Sandbox
+      type: http://localhost:8080/rest/figma-projects-api/1.0.0/sse
+    - name: Figma Styles API REST Sandbox
+      type: http://localhost:8080/rest/figma-styles-api/1.0.0
+    - name: Figma Styles MCP Sandbox
+      type: http://localhost:8080/rest/figma-styles-api/1.0.0/sse
+    - name: Figma Teams API REST Sandbox
+      type: http://localhost:8080/rest/figma-teams-api/1.0.0
+    - name: Figma Teams MCP Sandbox
+      type: http://localhost:8080/rest/figma-teams-api/1.0.0/sse
+distribution:
+  backstage:
+    - title: Figma Activity Logs API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        do that.
+      entity: backstage/figma-activity-logs-api-api-sandbox-backstage.yml
+    - title: Figma Analytics API
+      description: >-
+        This is the OpenAPI specification for the [Figma REST
+        API](https://www.figma.com/developers/api) Analytics endpoints.Note: we
+        are releasing the OpenAPI specification as a beta given the large
+        surface area and complexity of the REST API.
+      entity: backstage/figma-analytics-api-api-sandbox-backstage.yml
+    - title: Figma API
+      description: >-
+        This is the OpenAPI specification for the [Figma REST
+        API](https://www.figma.com/developers/api).Note: we are releasing the
+        OpenAPI specification as a beta given the large surface area and
+        complexity of the REST API. If you notice any inaccuracies with the
+        specification, please [file an
+        issue](https://github.com/figma/rest-api-spec/issues).
+      entity: backstage/figma-api-api-sandbox-backstage.yml
+    - title: Figma Component Sets API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        do that.
+      entity: backstage/figma-component-sets-api-api-sandbox-backstage.yml
+    - title: Figma Dev Resources API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        do that.
+      entity: backstage/figma-dev-resources-api-api-sandbox-backstage.yml
+    - title: Figma Files API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        do that.
+      entity: backstage/figma-files-api-api-sandbox-backstage.yml
+    - title: Figma Images API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        dothat.
+      entity: backstage/figma-images-api-api-sandbox-backstage.yml
+    - title: Figma Me API
+      description: >-
+        This is the OpenAPI specification for the [Figma REST
+        API](https://www.figma.com/developers/api).
+      entity: backstage/figma-me-api-api-sandbox-backstage.yml
+    - title: Figma Payments API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        dothat.
+      entity: backstage/figma-payments-api-api-sandbox-backstage.yml
+    - title: Figma Projects API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        dothat.
+      entity: backstage/figma-projects-api-api-sandbox-backstage.yml
+    - title: Figma Styles API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        dothat.
+      entity: backstage/figma-styles-api-api-sandbox-backstage.yml
+    - title: Figma Teams API
+      description: >-
+        Figma allows designers to create and prototype their digital experiences
+        -together in real-time and in one place - helping them turn their ideas
+        andvisions into products, faster. Figma's mission is to make
+        designaccessible to everyone. The Figma API is one of the ways we aim to
+        dothat.
+      entity: backstage/figma-teams-api-api-sandbox-backstage.yml
+metrics:
+  numberOfPaths: 12
+  numberOfOperations: 13
+  numberOfReadOperations: 10
+  numberOfWriteOperations: 3
+  numberOfSchemas: 111
+  numberOfResponses: 67
+  numberOfParameters: 32
+  numberOfExamples: 45
+  numberOfRequestBodies: 2
+  numberOfHeaders: 0
+  tags:
+    - Activity Logs
+    - Component Sets
+    - Dev Resources
+    - Files
+    - Images
+    - Keys
+    - Library Analytics
+    - Me
+    - Payments
+    - Projects
+    - Styles
+    - Teams
+    - Users
+    - Webhooks
+  operations:
+    - Create dev resources
+    - Delete dev resource
+    - Get activity logs
+    - Get component set
+    - Get current user
+    - Get current user
+    - Get files in a project
+    - Get library analytics usage data
+    - Get payments
+    - Get style
+    - Get team webhooks
+    - Render images of file nodes
+    - Update dev resources
+useCase:
+  - $ref: >-
+      https://github.com/naftiko/schema/blob/main/secondary/use-case/examples/use-case-example-api-sandbox.yml
+stakeholders:
+  - FN: Kin Lane
+    ROLE: Chief Community Officer (CCO)
+    EMAIL: kinlane@naftiko.io
+    SOCIALPROFILE: https://www.linkedin.com/in/kinlane/
+change:
+  state: New
+  schemaVersion: 0.1.0
+  capabilityVersion: 0.1.0
+  updated: '2026-1-28T00:00:00Z'
+  created: '2026-1-28T00:00:00Z'
+source:
+  httpUrl: https://github.com/naftiko/figma-sandbox
+  sshUrl: git@github.com:naftiko/figma-sandbox.git
+support:
+  issues: https://github.com/naftiko/figma-sandbox/issues
+  discussions: https://github.com/orgs/naftiko/discussions
+standards:
+  - name: Naftiko Capabilities
+    description: This uses a exploratory schema to help inform and shape capabilities.
+    docUrl: https://naftiko.github.io/technology/docs/capabilities/
+  - name: OpenAPI
+    description: This uses OpenAPI to define access to all HTTP APIs.
+    docUrl: https://naftiko.github.io/technology/docs/standards/openapi/
+  - name: JSON Schema
+    description: This uses JSON Schema to define and validate all entities used.
+    docUrl: 'https://naftiko.github.io/technology/docs/standards/json-schema/ '
+  - name: Model Context Protocol
+    description: This uses MCP expresed as JSON schema to define each MCP server.
+    docUrl: >-
+      https://naftiko.github.io/technology/docs/standards/model-context-protocol/
+  - name: Bruno Collections
+    description: >-
+      This uses Bruno Collections to define each executable HTTP API
+      integration.
+    docUrl: https://naftiko.github.io/technology/docs/standards/bruno-collections/
+  - name: Bruno Environments
+    description: >-
+      This uses Bruno Environments to store keys for each API to use in
+      automation.
+    docUrl: https://naftiko.github.io/technology/docs/standards/bruno-environments/
+  - name: API Commons
+    description: This uses an API Commons schema to define the plans and rate limits.
+    docUrl: https://naftiko.github.io/technology/docs/standards/api-commons/
+services:
+  - aid: figma
+    name: Figma API & MCP Sandbox
+    description: >-
+      This is a Figma sandbox that uses OpenAPI, Microcks, Bruno, and Backstage
+      to provide a 3rd-party REST API and MCP sandbox for Figma.
+    docUrl: https://naftiko.github.io/technology/docs/services/figma/
+    apisJson: >-
+      https://raw.githubusercontent.com/api-evangelist/figma/refs/heads/main/apis.yml
+    loginUrl: https://www.figma.com/login?cont=/developers/embed
+    signUpUrl: https://www.figma.com/signup?cont=/developers/embed
+    termsOfServiceUrl: https://www.figma.com/legal/tos/
+    privacyPolicyUrl: https://www.figma.com/legal/privacy/
+observability:
+  visibility: Public
