@@ -1,0 +1,209 @@
+meta {
+  name: Get team webhooks
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v2/teams/:team_id/webhooks
+  body: none
+  auth: bearer
+}
+
+params:path {
+  team_id: naftiko
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+example {
+  name: Successful team webhooks response
+  
+  request: {
+    url: {{baseUrl}}/v2/teams/:team_id/webhooks
+    method: GET
+    mode: none
+    params:path: {
+      team_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "webhooks": [
+            {
+              "id": "webhook_abc123xyz789",
+              "event_type": "FILE_UPDATE",
+              "team_id": "team_12345678",
+              "status": "ACTIVE",
+              "client_id": "oauth_client_xyz",
+              "passcode": "secret_passcode_123",
+              "endpoint": "https://api.myapp.com/figma/webhooks",
+              "description": "Webhook for design file updates"
+            },
+            {
+              "id": "webhook_def456uvw012",
+              "event_type": "FILE_COMMENT",
+              "team_id": "team_12345678",
+              "status": "PAUSED",
+              "client_id": null,
+              "passcode": "another_passcode_456",
+              "endpoint": "https://api.myapp.com/figma/comments",
+              "description": null
+            }
+          ]
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Access denied error
+  
+  request: {
+    url: {{baseUrl}}/v2/teams/:team_id/webhooks
+    method: GET
+    mode: none
+    params:path: {
+      team_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 403,
+          "err": "Access denied. You do not have permission to access this team's webhooks."
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Team not found error
+  
+  request: {
+    url: {{baseUrl}}/v2/teams/:team_id/webhooks
+    method: GET
+    mode: none
+    params:path: {
+      team_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 404,
+          "err": "Team not found"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Rate limit exceeded error
+  
+  request: {
+    url: {{baseUrl}}/v2/teams/:team_id/webhooks
+    method: GET
+    mode: none
+    params:path: {
+      team_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 429
+      text: Too Many Requests
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 429,
+          "err": "Rate limit exceeded. Please wait before retrying."
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Internal server error
+  
+  request: {
+    url: {{baseUrl}}/v2/teams/:team_id/webhooks
+    method: GET
+    mode: none
+    params:path: {
+      team_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 500,
+          "err": "Internal server error"
+        }
+      '''
+    }
+  }
+}

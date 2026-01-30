@@ -1,0 +1,227 @@
+meta {
+  name: Get files in a project
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/projects/:project_id/files
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~branch_data: naftiko
+}
+
+params:path {
+  project_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+example {
+  name: Successful project files response
+  
+  request: {
+    url: {{baseUrl}}/v1/projects/:project_id/files
+    method: GET
+    mode: none
+    params:query: {
+      ~branch_data: 
+    }
+  
+    params:path: {
+      project_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "name": "Mobile App Design",
+          "files": [
+            {
+              "key": "abc123XYZ789",
+              "name": "Design System Components",
+              "thumbnail_url": "https://s3-alpha.figma.com/thumbnails/abc123-xyz789",
+              "last_modified": "2024-06-20T10:30:00Z"
+            },
+            {
+              "key": "def456UVW012",
+              "name": "App Screens",
+              "thumbnail_url": "https://s3-alpha.figma.com/thumbnails/def456-uvw012",
+              "last_modified": "2024-06-19T15:45:00Z"
+            }
+          ]
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Invalid project ID error
+  
+  request: {
+    url: {{baseUrl}}/v1/projects/:project_id/files
+    method: GET
+    mode: none
+    params:query: {
+      ~branch_data: 
+    }
+  
+    params:path: {
+      project_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 400,
+          "message": "Invalid project ID format"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Access denied error
+  
+  request: {
+    url: {{baseUrl}}/v1/projects/:project_id/files
+    method: GET
+    mode: none
+    params:query: {
+      ~branch_data: 
+    }
+  
+    params:path: {
+      project_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 403,
+          "err": "Access denied. You do not have permission to access this project."
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Rate limit exceeded error
+  
+  request: {
+    url: {{baseUrl}}/v1/projects/:project_id/files
+    method: GET
+    mode: none
+    params:query: {
+      ~branch_data: 
+    }
+  
+    params:path: {
+      project_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 429
+      text: Too Many Requests
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 429,
+          "err": "Rate limit exceeded. Please wait before retrying."
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Internal server error
+  
+  request: {
+    url: {{baseUrl}}/v1/projects/:project_id/files
+    method: GET
+    mode: none
+    params:query: {
+      ~branch_data: 
+    }
+  
+    params:path: {
+      project_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 500,
+          "err": "Internal server error"
+        }
+      '''
+    }
+  }
+}

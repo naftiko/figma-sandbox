@@ -34,12 +34,9 @@ paths:
         response.
       operationId: postDevResources
       x-microcks-operation:
-        dispatcher: FALLBACK
-        dispatcherRules: |
-          {
-            "dispatcher": "FALLBACK",
-            "fallback": "PostDevResourcesSuccessExample"
-          }
+        dispatcher: SCRIPT
+        dispatcherRules: |        
+          return "PostDevResourcesSuccessExample"
       requestBody:
         $ref: '#/components/requestBodies/CreateDevResourcesRequestBody'
       responses:

@@ -1,0 +1,141 @@
+meta {
+  name: Get current user
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/me
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+example {
+  name: Successful user information response
+  
+  request: {
+    url: {{baseUrl}}/v1/me
+    method: GET
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "1234567890",
+          "handle": "John Designer",
+          "img_url": "https://s3-alpha.figma.com/profile/abc123-xyz789",
+          "email": "john.designer@example.com"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Invalid token error
+  
+  request: {
+    url: {{baseUrl}}/v1/me
+    method: GET
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 403,
+          "err": "Invalid token"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Rate limit exceeded error
+  
+  request: {
+    url: {{baseUrl}}/v1/me
+    method: GET
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 429
+      text: Too Many Requests
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 429,
+          "err": "Rate limit exceeded. Please wait before retrying."
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Internal server error
+  
+  request: {
+    url: {{baseUrl}}/v1/me
+    method: GET
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 500,
+          "err": "Internal server error"
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "figma-payments-api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

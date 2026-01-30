@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "figma-images-api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -35,9 +35,9 @@ paths:
       description: Get metadata on a style by key.
       operationId: getStyle
       x-microcks-operation:
-        dispatcher: URI_PARTS
-        dispatcherRules: key
-        defaultResponse: GetStyleSuccessExample
+        dispatcher: SCRIPT
+        dispatcherRules: |        
+          return "GetStyleSuccessExample"
       parameters:
         - $ref: '#/components/parameters/StyleKeyPath'
       responses:

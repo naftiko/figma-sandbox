@@ -32,9 +32,7 @@ paths:
       description: Returns the user information for the currently authenticated user.
       operationId: getMe
       x-microcks-operation:
-        dispatcher: FALLBACK
-        dispatcherRules: ''
-        defaultResponse: GetMeSuccessExample
+        return "GetMeSuccessExample"
       responses:
         '200':
           $ref: '#/components/responses/GetMeResponse'

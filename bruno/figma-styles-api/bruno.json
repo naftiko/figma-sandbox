@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "figma-styles-api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -30,12 +30,9 @@ paths:
       description: Returns a list of activity log events
       operationId: getActivityLogs
       x-microcks-operation:
-        dispatcher: FALLBACK
-        dispatcherRules: |
-          {
-            "dispatcher": "FALLBACK",
-            "fallback": "GetActivityLogsSuccessExample"
-          }
+        dispatcher: SCRIPT
+        dispatcherRules: |        
+          return "GetActivityLogsSuccessExample"
       parameters:
         - $ref: '#/components/parameters/EventsQueryParam'
         - $ref: '#/components/parameters/StartTimeQueryParam'

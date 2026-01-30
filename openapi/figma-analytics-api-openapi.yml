@@ -34,12 +34,9 @@ paths:
         requested dimension.
       operationId: getLibraryAnalyticsUsages
       x-microcks-operation:
-        dispatcher: FALLBACK
-        dispatcherRules: |
-          {
-            "dispatcher": "FALLBACK",
-            "fallback": "GetLibraryAnalyticsUsagesSuccessExample"
-          }
+        dispatcher: SCRIPT
+        dispatcherRules: |        
+          return "GetLibraryAnalyticsUsagesSuccessExample"
       parameters:
         - $ref: '#/components/parameters/FileKeyPathParam'
         - $ref: '#/components/parameters/CursorQueryParam'

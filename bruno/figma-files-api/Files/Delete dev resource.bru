@@ -1,0 +1,235 @@
+meta {
+  name: Delete dev resource
+  type: http
+  seq: 1
+}
+
+delete {
+  url: {{baseUrl}}/v1/files/:file_key/dev_resources/:dev_resource_id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  file_key: naftiko
+  dev_resource_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+example {
+  name: Successful dev resource deletion
+  
+  request: {
+    url: {{baseUrl}}/v1/files/:file_key/dev_resources/:dev_resource_id
+    method: DELETE
+    mode: none
+    params:path: {
+      file_key: 
+      dev_resource_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 200,
+          "error": false
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Unauthorized error
+  
+  request: {
+    url: {{baseUrl}}/v1/files/:file_key/dev_resources/:dev_resource_id
+    method: DELETE
+    mode: none
+    params:path: {
+      file_key: 
+      dev_resource_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 401,
+          "message": "Token is missing or incorrect"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Forbidden error
+  
+  request: {
+    url: {{baseUrl}}/v1/files/:file_key/dev_resources/:dev_resource_id
+    method: DELETE
+    mode: none
+    params:path: {
+      file_key: 
+      dev_resource_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 403,
+          "message": "You do not have permission to access this file"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Not found error
+  
+  request: {
+    url: {{baseUrl}}/v1/files/:file_key/dev_resources/:dev_resource_id
+    method: DELETE
+    mode: none
+    params:path: {
+      file_key: 
+      dev_resource_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 404,
+          "message": "File or dev resource not found"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Rate limit error
+  
+  request: {
+    url: {{baseUrl}}/v1/files/:file_key/dev_resources/:dev_resource_id
+    method: DELETE
+    mode: none
+    params:path: {
+      file_key: 
+      dev_resource_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 429
+      text: Too Many Requests
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 429,
+          "message": "Rate limit exceeded. Please wait before making another request"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Internal server error
+  
+  request: {
+    url: {{baseUrl}}/v1/files/:file_key/dev_resources/:dev_resource_id
+    method: DELETE
+    mode: none
+    params:path: {
+      file_key: 
+      dev_resource_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 500,
+          "message": "An internal server error occurred"
+        }
+      '''
+    }
+  }
+}

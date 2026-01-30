@@ -35,9 +35,9 @@ paths:
       description: Get a list of all the Files within the specified project.
       operationId: getProjectFiles
       x-microcks-operation:
-        dispatcher: URI_PARTS
-        dispatcherRules: project_id
-        defaultResponse: GetProjectFilesSuccessExample
+        dispatcher: SCRIPT
+        dispatcherRules: |        
+          return "GetProjectFilesSuccessExample"
       parameters:
         - $ref: '#/components/parameters/ProjectIdPath'
         - $ref: '#/components/parameters/BranchDataQuery'

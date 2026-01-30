@@ -35,9 +35,9 @@ paths:
       description: Returns all webhooks registered under the specified team.
       operationId: getTeamWebhooks
       x-microcks-operation:
-        dispatcher: URI_PARTS
-        dispatcherRules: team_id
-        defaultResponse: GetTeamWebhooksSuccessExample
+        dispatcher: SCRIPT
+        dispatcherRules: |        
+          return "GetTeamWebhooksSuccessExample"
       parameters:
         - $ref: '#/components/parameters/TeamIdPath'
       responses:

@@ -1,0 +1,342 @@
+meta {
+  name: Create dev resources
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/v1/dev_resources
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "devResources": [
+      {
+        "name": "",
+        "url": "",
+        "fileKey": "",
+        "nodeId": ""
+      }
+    ]
+  }
+}
+
+example {
+  name: Successful create dev resources response (Create dev resources request)
+  
+  request: {
+    url: {{baseUrl}}/v1/dev_resources
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "devResources": [
+          {
+            "name": "Button Component Code",
+            "url": "https://github.com/myorg/design-system/blob/main/src/components/Button.tsx",
+            "fileKey": "abc123xyz789",
+            "nodeId": "1:1"
+          },
+          {
+            "name": "Button Storybook",
+            "url": "https://storybook.myorg.com/?path=/story/button",
+            "fileKey": "abc123xyz789",
+            "nodeId": "1:1"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "linksCreated": [
+            {
+              "id": "dev_res_123",
+              "name": "Button Component Code",
+              "url": "https://github.com/myorg/design-system/blob/main/src/components/Button.tsx",
+              "fileKey": "abc123xyz789",
+              "nodeId": "1:1"
+            },
+            {
+              "id": "dev_res_456",
+              "name": "Button Storybook",
+              "url": "https://storybook.myorg.com/?path=/story/button",
+              "fileKey": "abc123xyz789",
+              "nodeId": "1:1"
+            }
+          ],
+          "errors": []
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Bad request error (Create dev resources request)
+  
+  request: {
+    url: {{baseUrl}}/v1/dev_resources
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "devResources": [
+          {
+            "name": "Button Component Code",
+            "url": "https://github.com/myorg/design-system/blob/main/src/components/Button.tsx",
+            "fileKey": "abc123xyz789",
+            "nodeId": "1:1"
+          },
+          {
+            "name": "Button Storybook",
+            "url": "https://storybook.myorg.com/?path=/story/button",
+            "fileKey": "abc123xyz789",
+            "nodeId": "1:1"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 400,
+          "message": "Invalid parameter: url format is incorrect"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Unauthorized error (Create dev resources request)
+  
+  request: {
+    url: {{baseUrl}}/v1/dev_resources
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "devResources": [
+          {
+            "name": "Button Component Code",
+            "url": "https://github.com/myorg/design-system/blob/main/src/components/Button.tsx",
+            "fileKey": "abc123xyz789",
+            "nodeId": "1:1"
+          },
+          {
+            "name": "Button Storybook",
+            "url": "https://storybook.myorg.com/?path=/story/button",
+            "fileKey": "abc123xyz789",
+            "nodeId": "1:1"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 401,
+          "message": "Token is missing or incorrect"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Forbidden error (Create dev resources request)
+  
+  request: {
+    url: {{baseUrl}}/v1/dev_resources
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "devResources": [
+          {
+            "name": "Button Component Code",
+            "url": "https://github.com/myorg/design-system/blob/main/src/components/Button.tsx",
+            "fileKey": "abc123xyz789",
+            "nodeId": "1:1"
+          },
+          {
+            "name": "Button Storybook",
+            "url": "https://storybook.myorg.com/?path=/story/button",
+            "fileKey": "abc123xyz789",
+            "nodeId": "1:1"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 403,
+          "message": "You do not have permission to modify dev resources for this file"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Rate limit error (Create dev resources request)
+  
+  request: {
+    url: {{baseUrl}}/v1/dev_resources
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "devResources": [
+          {
+            "name": "Button Component Code",
+            "url": "https://github.com/myorg/design-system/blob/main/src/components/Button.tsx",
+            "fileKey": "abc123xyz789",
+            "nodeId": "1:1"
+          },
+          {
+            "name": "Button Storybook",
+            "url": "https://storybook.myorg.com/?path=/story/button",
+            "fileKey": "abc123xyz789",
+            "nodeId": "1:1"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 429
+      text: Too Many Requests
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 429,
+          "message": "Rate limit exceeded. Please wait before making another request"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Internal server error (Create dev resources request)
+  
+  request: {
+    url: {{baseUrl}}/v1/dev_resources
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "devResources": [
+          {
+            "name": "Button Component Code",
+            "url": "https://github.com/myorg/design-system/blob/main/src/components/Button.tsx",
+            "fileKey": "abc123xyz789",
+            "nodeId": "1:1"
+          },
+          {
+            "name": "Button Storybook",
+            "url": "https://storybook.myorg.com/?path=/story/button",
+            "fileKey": "abc123xyz789",
+            "nodeId": "1:1"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 500,
+          "message": "An internal server error occurred"
+        }
+      '''
+    }
+  }
+}

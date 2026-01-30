@@ -41,9 +41,9 @@ paths:
         created.
       operationId: getPayments
       x-microcks-operation:
-        dispatcher: FALLBACK
-        dispatcherRules: ''
-        defaultResponse: GetPaymentsSuccessExample
+        dispatcher: SCRIPT
+        dispatcherRules: |        
+          return "GetPaymentsSuccessExample"
       parameters:
         - $ref: '#/components/parameters/PluginPaymentTokenQuery'
         - $ref: '#/components/parameters/UserIdQuery'

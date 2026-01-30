@@ -1,0 +1,323 @@
+meta {
+  name: Update dev resources
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/v1/dev_resources
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "devResources": [
+      {
+        "id": "",
+        "name": "",
+        "url": ""
+      }
+    ]
+  }
+}
+
+example {
+  name: Successful update dev resources response (Update dev resources request)
+  
+  request: {
+    url: {{baseUrl}}/v1/dev_resources
+    method: PUT
+    mode: json
+    body:json: {
+      {
+        "devResources": [
+          {
+            "id": "dev_res_123",
+            "name": "Updated Button Component",
+            "url": "https://github.com/myorg/design-system/blob/main/src/components/Button/index.tsx"
+          },
+          {
+            "id": "dev_res_456",
+            "name": "Button Documentation"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "linksUpdated": [
+            {
+              "id": "dev_res_123",
+              "name": "Updated Button Component",
+              "url": "https://github.com/myorg/design-system/blob/main/src/components/Button/index.tsx",
+              "fileKey": "abc123xyz789",
+              "nodeId": "1:1"
+            },
+            {
+              "id": "dev_res_456",
+              "name": "Button Documentation",
+              "url": "https://storybook.myorg.com/?path=/story/button",
+              "fileKey": "abc123xyz789",
+              "nodeId": "1:1"
+            }
+          ],
+          "errors": []
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Bad request error (Update dev resources request)
+  
+  request: {
+    url: {{baseUrl}}/v1/dev_resources
+    method: PUT
+    mode: json
+    body:json: {
+      {
+        "devResources": [
+          {
+            "id": "dev_res_123",
+            "name": "Updated Button Component",
+            "url": "https://github.com/myorg/design-system/blob/main/src/components/Button/index.tsx"
+          },
+          {
+            "id": "dev_res_456",
+            "name": "Button Documentation"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 400,
+          "message": "Invalid parameter: url format is incorrect"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Unauthorized error (Update dev resources request)
+  
+  request: {
+    url: {{baseUrl}}/v1/dev_resources
+    method: PUT
+    mode: json
+    body:json: {
+      {
+        "devResources": [
+          {
+            "id": "dev_res_123",
+            "name": "Updated Button Component",
+            "url": "https://github.com/myorg/design-system/blob/main/src/components/Button/index.tsx"
+          },
+          {
+            "id": "dev_res_456",
+            "name": "Button Documentation"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 401,
+          "message": "Token is missing or incorrect"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Forbidden error (Update dev resources request)
+  
+  request: {
+    url: {{baseUrl}}/v1/dev_resources
+    method: PUT
+    mode: json
+    body:json: {
+      {
+        "devResources": [
+          {
+            "id": "dev_res_123",
+            "name": "Updated Button Component",
+            "url": "https://github.com/myorg/design-system/blob/main/src/components/Button/index.tsx"
+          },
+          {
+            "id": "dev_res_456",
+            "name": "Button Documentation"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 403,
+          "message": "You do not have permission to modify dev resources for this file"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Rate limit error (Update dev resources request)
+  
+  request: {
+    url: {{baseUrl}}/v1/dev_resources
+    method: PUT
+    mode: json
+    body:json: {
+      {
+        "devResources": [
+          {
+            "id": "dev_res_123",
+            "name": "Updated Button Component",
+            "url": "https://github.com/myorg/design-system/blob/main/src/components/Button/index.tsx"
+          },
+          {
+            "id": "dev_res_456",
+            "name": "Button Documentation"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 429
+      text: Too Many Requests
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 429,
+          "message": "Rate limit exceeded. Please wait before making another request"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Internal server error (Update dev resources request)
+  
+  request: {
+    url: {{baseUrl}}/v1/dev_resources
+    method: PUT
+    mode: json
+    body:json: {
+      {
+        "devResources": [
+          {
+            "id": "dev_res_123",
+            "name": "Updated Button Component",
+            "url": "https://github.com/myorg/design-system/blob/main/src/components/Button/index.tsx"
+          },
+          {
+            "id": "dev_res_456",
+            "name": "Button Documentation"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 500,
+          "message": "An internal server error occurred"
+        }
+      '''
+    }
+  }
+}

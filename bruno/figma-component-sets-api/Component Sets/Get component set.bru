@@ -1,0 +1,246 @@
+meta {
+  name: Get component set
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/component_sets/:key
+  body: none
+  auth: bearer
+}
+
+params:path {
+  key: naftiko
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+example {
+  name: Successful component set response
+  
+  request: {
+    url: {{baseUrl}}/v1/component_sets/:key
+    method: GET
+    mode: none
+    params:path: {
+      key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 200,
+          "error": false,
+          "meta": {
+            "key": "abc123def456",
+            "fileKey": "xyz789abc123",
+            "nodeId": "1:1",
+            "thumbnailUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/abc123",
+            "name": "Button Component Set",
+            "description": "A set of button variants including primary, secondary, and tertiary styles.",
+            "createdAt": "2024-01-15T10:30:00Z",
+            "updatedAt": "2024-01-20T14:45:00Z",
+            "user": {
+              "id": "1234567890",
+              "handle": "Jane Designer",
+              "imgUrl": "https://s3-alpha.figma.com/profile/1234567890"
+            },
+            "containingFrame": {
+              "nodeId": "0:1",
+              "name": "Components",
+              "backgroundColor": "#FFFFFF",
+              "pageId": "0:0",
+              "pageName": "Design System"
+            }
+          }
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Bad request error
+  
+  request: {
+    url: {{baseUrl}}/v1/component_sets/:key
+    method: GET
+    mode: none
+    params:path: {
+      key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 400,
+          "err": "Invalid parameter: key format is incorrect"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Forbidden error
+  
+  request: {
+    url: {{baseUrl}}/v1/component_sets/:key
+    method: GET
+    mode: none
+    params:path: {
+      key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 403,
+          "err": "You do not have permission to access this component set"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Not found error
+  
+  request: {
+    url: {{baseUrl}}/v1/component_sets/:key
+    method: GET
+    mode: none
+    params:path: {
+      key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 404,
+          "message": "Component set not found"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Rate limit error
+  
+  request: {
+    url: {{baseUrl}}/v1/component_sets/:key
+    method: GET
+    mode: none
+    params:path: {
+      key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 429
+      text: Too Many Requests
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 429,
+          "err": "Rate limit exceeded. Please wait before making another request"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Internal server error
+  
+  request: {
+    url: {{baseUrl}}/v1/component_sets/:key
+    method: GET
+    mode: none
+    params:path: {
+      key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 500,
+          "err": "An internal server error occurred"
+        }
+      '''
+    }
+  }
+}

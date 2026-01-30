@@ -1,0 +1,305 @@
+meta {
+  name: Get activity logs
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/activity_logs
+  body: none
+  auth: oauth2
+}
+
+params:query {
+  ~events: 
+  ~start_time: 
+  ~end_time: 
+  ~limit: 
+  ~order: 
+}
+
+auth:oauth2 {
+  grant_type: authorization_code
+  callback_url: {{oauth_callback_url}}
+  authorization_url: https://www.figma.com/oauth
+  access_token_url: https://api.figma.com/v1/oauth/token
+  refresh_token_url: {{oauth_refresh_url}}
+  client_id: {{oauth_client_id}}
+  client_secret: {{oauth_client_secret}}
+  scope: org:activity_log_read
+  state: {{oauth_state}}
+  pkce: false
+  credentials_placement: header
+  credentials_id: credentials
+  token_placement: header
+  token_header_prefix: Bearer
+  auto_fetch_token: false
+  auto_refresh_token: true
+}
+
+example {
+  name: Successful activity logs response
+  
+  request: {
+    url: {{baseUrl}}/v1/activity_logs
+    method: GET
+    mode: none
+    params:query: {
+      ~events: 
+      ~start_time: 
+      ~end_time: 
+      ~limit: 
+      ~order: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 200,
+          "error": false,
+          "meta": {
+            "activityLogs": [
+              {
+                "id": "evt_123456789",
+                "timestamp": 1706745600,
+                "actor": {
+                  "type": "user",
+                  "id": "usr_abc123",
+                  "name": "John Doe",
+                  "email": "john.doe@example.com"
+                },
+                "action": {
+                  "type": "file.created",
+                  "details": {
+                    "fileName": "My Design File"
+                  }
+                },
+                "entity": {
+                  "type": "file",
+                  "id": "file_xyz789",
+                  "name": "My Design File"
+                },
+                "context": {
+                  "clientName": null,
+                  "ipAddress": "192.168.1.100",
+                  "isFigmaSupportTeamAction": false,
+                  "orgId": "org_123",
+                  "teamId": "team_456"
+                }
+              }
+            ],
+            "cursor": "eyJsYXN0X2V2ZW50X2lkIjoiZXZ0XzEyMzQ1Njc4OSJ9",
+            "nextPage": true
+          }
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Bad request error
+  
+  request: {
+    url: {{baseUrl}}/v1/activity_logs
+    method: GET
+    mode: none
+    params:query: {
+      ~events: 
+      ~start_time: 
+      ~end_time: 
+      ~limit: 
+      ~order: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 400,
+          "message": "Invalid parameter: start_time must be a valid Unix timestamp"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Unauthorized error
+  
+  request: {
+    url: {{baseUrl}}/v1/activity_logs
+    method: GET
+    mode: none
+    params:query: {
+      ~events: 
+      ~start_time: 
+      ~end_time: 
+      ~limit: 
+      ~order: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 401,
+          "message": "Token is missing or incorrect"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Forbidden error
+  
+  request: {
+    url: {{baseUrl}}/v1/activity_logs
+    method: GET
+    mode: none
+    params:query: {
+      ~events: 
+      ~start_time: 
+      ~end_time: 
+      ~limit: 
+      ~order: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 403,
+          "message": "You do not have permission to access this resource"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Rate limit error
+  
+  request: {
+    url: {{baseUrl}}/v1/activity_logs
+    method: GET
+    mode: none
+    params:query: {
+      ~events: 
+      ~start_time: 
+      ~end_time: 
+      ~limit: 
+      ~order: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 429
+      text: Too Many Requests
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 429,
+          "message": "Rate limit exceeded. Please wait before making another request"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Internal server error
+  
+  request: {
+    url: {{baseUrl}}/v1/activity_logs
+    method: GET
+    mode: none
+    params:query: {
+      ~events: 
+      ~start_time: 
+      ~end_time: 
+      ~limit: 
+      ~order: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 500,
+          "message": "An internal server error occurred"
+        }
+      '''
+    }
+  }
+}

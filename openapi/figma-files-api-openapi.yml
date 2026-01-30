@@ -34,12 +34,9 @@ paths:
       description: Delete a dev resource from a file
       operationId: deleteDevResource
       x-microcks-operation:
-        dispatcher: FALLBACK
-        dispatcherRules: |
-          {
-            "dispatcher": "FALLBACK",
-            "fallback": "DeleteDevResourceSuccessExample"
-          }
+        dispatcher: SCRIPT
+        dispatcherRules: |        
+          return "DeleteDevResourceSuccessExample"
       parameters:
         - $ref: '#/components/parameters/FileKeyPathParam'
         - $ref: '#/components/parameters/DevResourceIdPathParam'

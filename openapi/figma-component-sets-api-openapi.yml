@@ -31,12 +31,9 @@ paths:
       description: Get metadata on a component set by key.
       operationId: getComponentSet
       x-microcks-operation:
-        dispatcher: FALLBACK
-        dispatcherRules: |
-          {
-            "dispatcher": "FALLBACK",
-            "fallback": "GetComponentSetSuccessExample"
-          }
+        dispatcher: SCRIPT
+        dispatcherRules: |        
+          return "GetComponentSetSuccessExample"
       parameters:
         - $ref: '#/components/parameters/ComponentSetKeyPathParam'
       responses:

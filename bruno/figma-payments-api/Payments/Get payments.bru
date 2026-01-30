@@ -1,0 +1,185 @@
+meta {
+  name: Get payments
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/payments
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~plugin_payment_token: 
+  ~user_id: 
+  ~community_file_id: 
+  ~plugin_id: 
+  ~widget_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+example {
+  name: Successful payment information response
+  
+  request: {
+    url: {{baseUrl}}/v1/payments
+    method: GET
+    mode: none
+    params:query: {
+      ~plugin_payment_token: 
+      ~user_id: 
+      ~community_file_id: 
+      ~plugin_id: 
+      ~widget_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 200,
+          "error": false,
+          "meta": {
+            "user_id": "1234567890",
+            "resource_id": "1122334455",
+            "resource_type": "PLUGIN",
+            "payment_status": "PAID",
+            "date_of_purchase": "2024-06-15T14:30:00Z"
+          }
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Unauthorized error
+  
+  request: {
+    url: {{baseUrl}}/v1/payments
+    method: GET
+    mode: none
+    params:query: {
+      ~plugin_payment_token: 
+      ~user_id: 
+      ~community_file_id: 
+      ~plugin_id: 
+      ~widget_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 401,
+          "message": "Token is missing or incorrect"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Rate limit exceeded error
+  
+  request: {
+    url: {{baseUrl}}/v1/payments
+    method: GET
+    mode: none
+    params:query: {
+      ~plugin_payment_token: 
+      ~user_id: 
+      ~community_file_id: 
+      ~plugin_id: 
+      ~widget_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 429
+      text: Too Many Requests
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 429,
+          "message": "Rate limit exceeded. Please wait before retrying."
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Internal server error
+  
+  request: {
+    url: {{baseUrl}}/v1/payments
+    method: GET
+    mode: none
+    params:query: {
+      ~plugin_payment_token: 
+      ~user_id: 
+      ~community_file_id: 
+      ~plugin_id: 
+      ~widget_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 500,
+          "message": "Internal server error"
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,304 @@
+meta {
+  name: Get library analytics usage data
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/analytics/libraries/:file_key/usages?group_by=anything&cursor=naftiko&order=asc
+  body: none
+  auth: bearer
+}
+
+params:query {
+  group_by: anything
+  cursor: naftiko
+  order: asc
+}
+
+params:path {
+  file_key: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+example {
+  name: Successful library analytics usage response
+  
+  request: {
+    url: {{baseUrl}}/v1/analytics/libraries/:file_key/usages
+    method: GET
+    mode: none
+    params:query: {
+      ~cursor: 
+      group_by: 
+      ~order: 
+    }
+  
+    params:path: {
+      file_key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "components": [
+            {
+              "componentKey": "comp_abc123",
+              "componentName": "Primary Button",
+              "componentSetKey": "compset_xyz789",
+              "componentSetName": "Buttons",
+              "numInstances": 1542,
+              "numTeamsUsing": 8,
+              "numFilesUsing": 45
+            },
+            {
+              "componentKey": "comp_def456",
+              "componentName": "Secondary Button",
+              "componentSetKey": "compset_xyz789",
+              "componentSetName": "Buttons",
+              "numInstances": 876,
+              "numTeamsUsing": 6,
+              "numFilesUsing": 32
+            }
+          ],
+          "files": [
+            {
+              "fileName": "Marketing Landing Page",
+              "teamName": "Marketing Design",
+              "workspaceName": "Company Workspace",
+              "numInstances": 89
+            },
+            {
+              "fileName": "Product Dashboard",
+              "teamName": "Product Design",
+              "workspaceName": "Company Workspace",
+              "numInstances": 156
+            }
+          ],
+          "nextPage": true,
+          "cursor": "eyJwYWdlIjoyfQ=="
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Bad request error
+  
+  request: {
+    url: {{baseUrl}}/v1/analytics/libraries/:file_key/usages
+    method: GET
+    mode: none
+    params:query: {
+      ~cursor: 
+      group_by: 
+      ~order: 
+    }
+  
+    params:path: {
+      file_key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 400,
+          "message": "Invalid parameter: group_by must be 'component' or 'file'"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Unauthorized error
+  
+  request: {
+    url: {{baseUrl}}/v1/analytics/libraries/:file_key/usages
+    method: GET
+    mode: none
+    params:query: {
+      ~cursor: 
+      group_by: 
+      ~order: 
+    }
+  
+    params:path: {
+      file_key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 401,
+          "message": "Token is missing or incorrect"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Forbidden error
+  
+  request: {
+    url: {{baseUrl}}/v1/analytics/libraries/:file_key/usages
+    method: GET
+    mode: none
+    params:query: {
+      ~cursor: 
+      group_by: 
+      ~order: 
+    }
+  
+    params:path: {
+      file_key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 403,
+          "message": "You do not have permission to access analytics for this library"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Rate limit error
+  
+  request: {
+    url: {{baseUrl}}/v1/analytics/libraries/:file_key/usages
+    method: GET
+    mode: none
+    params:query: {
+      ~cursor: 
+      group_by: 
+      ~order: 
+    }
+  
+    params:path: {
+      file_key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 429
+      text: Too Many Requests
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 429,
+          "message": "Rate limit exceeded. Please wait before making another request"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Internal server error
+  
+  request: {
+    url: {{baseUrl}}/v1/analytics/libraries/:file_key/usages
+    method: GET
+    mode: none
+    params:query: {
+      ~cursor: 
+      group_by: 
+      ~order: 
+    }
+  
+    params:path: {
+      file_key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 500,
+          "message": "An internal server error occurred"
+        }
+      '''
+    }
+  }
+}

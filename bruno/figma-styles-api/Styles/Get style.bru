@@ -1,0 +1,241 @@
+meta {
+  name: Get style
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/styles/:key
+  body: none
+  auth: bearer
+}
+
+params:path {
+  key: naftiko
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+example {
+  name: Successful style metadata response
+  
+  request: {
+    url: {{baseUrl}}/v1/styles/:key
+    method: GET
+    mode: none
+    params:path: {
+      key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 200,
+          "error": false,
+          "meta": {
+            "key": "style_abc123xyz789",
+            "file_key": "file_def456uvw012",
+            "node_id": "1:2",
+            "style_type": "FILL",
+            "thumbnail_url": "https://s3-alpha.figma.com/thumbnails/style-abc123",
+            "name": "Primary Brand Color",
+            "description": "Main brand color used for primary actions and highlights",
+            "created_at": "2024-01-15T09:00:00Z",
+            "updated_at": "2024-06-20T14:30:00Z",
+            "user": {
+              "id": "1234567890",
+              "handle": "John Designer",
+              "img_url": "https://s3-alpha.figma.com/profile/abc123-xyz789"
+            },
+            "sort_position": "a0"
+          }
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Invalid style key error
+  
+  request: {
+    url: {{baseUrl}}/v1/styles/:key
+    method: GET
+    mode: none
+    params:path: {
+      key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 400,
+          "err": "Invalid style key format"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Access denied error
+  
+  request: {
+    url: {{baseUrl}}/v1/styles/:key
+    method: GET
+    mode: none
+    params:path: {
+      key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 403,
+          "err": "Access denied. You do not have permission to access this style."
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Style not found error
+  
+  request: {
+    url: {{baseUrl}}/v1/styles/:key
+    method: GET
+    mode: none
+    params:path: {
+      key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "error": true,
+          "status": 404,
+          "message": "Style not found"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Rate limit exceeded error
+  
+  request: {
+    url: {{baseUrl}}/v1/styles/:key
+    method: GET
+    mode: none
+    params:path: {
+      key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 429
+      text: Too Many Requests
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 429,
+          "err": "Rate limit exceeded. Please wait before retrying."
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Internal server error
+  
+  request: {
+    url: {{baseUrl}}/v1/styles/:key
+    method: GET
+    mode: none
+    params:path: {
+      key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": 500,
+          "err": "Internal server error"
+        }
+      '''
+    }
+  }
+}
