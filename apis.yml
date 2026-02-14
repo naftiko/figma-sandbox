@@ -1,0 +1,372 @@
+specificationVersion: '0.19'
+
+aid: figma-sandbox
+type: Sandbox
+visibility: Public
+
+name: Figma API & MCP Sandbox
+description: >-
+  This is a Figma sandbox that uses OpenAPI, Microcks, Bruno, and Backstage to
+  provide a 3rd-party REST API and MCP sandbox for Figma.
+tags:
+  - Design
+  - Projects
+  - Files
+  - Images
+  - Styles
+  - Teams
+
+image: https://naftiko.s3.us-east-1.amazonaws.com/naftiko-logo-blue-icon.png
+
+created: '2026-02-13'
+modified: '2026-02-13'
+
+url: https://github.com/naftiko/figma-sandbox/blob/main/README.md
+
+apis:
+
+    - aid: figma:activity-logs-api
+      name: Figma Activity Logs API
+      description: >-
+        Retrieve activity logs for a Figma organization. Track user actions,
+        file events, and administrative changes for auditing and compliance
+        purposes.
+      tags:
+        - Activity Logs
+        - Auditing
+      properties:
+
+        - type: OpenApi
+          url: openapi/figma-activity-logs-api-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/figma-activity-logs-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/figma-activity-logs-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/figma-activity-logs-api-api-sandbox-backstage.yml
+
+    - aid: figma:analytics-api
+      name: Figma Analytics API
+      description: >-
+        Access analytics data for Figma libraries and design system usage.
+        Retrieve metrics on component adoption, library usage patterns, and
+        design system health across an organization.
+      tags:
+        - Library Analytics
+        - Design Systems
+      properties:
+
+        - type: OpenApi
+          url: openapi/figma-analytics-api-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/figma-analytics-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/figma-analytics-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/figma-analytics-api-api-sandbox-backstage.yml
+
+    - aid: figma:api
+      name: Figma API
+      description: >-
+        The core Figma REST API providing access to files, components, styles,
+        comments, webhooks, and other Figma platform resources. This is the
+        primary general-purpose API for integrating with Figma.
+      tags:
+        - Files
+        - Components
+        - Comments
+        - Webhooks
+      properties:
+
+        - type: OpenApi
+          url: openapi/figma-api-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/figma-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/figma-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/figma-api-api-sandbox-backstage.yml
+
+    - aid: figma:component-sets-api
+      name: Figma Component Sets API
+      description: >-
+        Retrieve metadata for component sets (variant groups) published in
+        Figma team libraries. Inspect component set properties, variants,
+        and documentation.
+      tags:
+        - Component Sets
+        - Design Systems
+      properties:
+
+        - type: OpenApi
+          url: openapi/figma-component-sets-api-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/figma-component-sets-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/figma-component-sets-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/figma-component-sets-api-api-sandbox-backstage.yml
+
+    - aid: figma:dev-resources-api
+      name: Figma Dev Resources API
+      description: >-
+        Create, update, and delete dev resources linked to Figma design nodes.
+        Dev resources connect design elements to code repositories, documentation,
+        and other development artifacts.
+      tags:
+        - Dev Resources
+        - Developer Handoff
+      properties:
+
+        - type: OpenApi
+          url: openapi/figma-dev-resources-api-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/figma-dev-resources-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/figma-dev-resources-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/figma-dev-resources-api-api-sandbox-backstage.yml
+
+    - aid: figma:files-api
+      name: Figma Files API
+      description: >-
+        Access Figma file data including document structure, nodes, components,
+        and metadata. List files within projects and retrieve detailed file
+        contents for integration and automation workflows.
+      tags:
+        - Files
+        - Projects
+      properties:
+
+        - type: OpenApi
+          url: openapi/figma-files-api-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/figma-files-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/figma-files-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/figma-files-api-api-sandbox-backstage.yml
+
+    - aid: figma:images-api
+      name: Figma Images API
+      description: >-
+        Render images from Figma file nodes in various formats including PNG,
+        JPG, SVG, and PDF. Export design assets programmatically for use in
+        development and content pipelines.
+      tags:
+        - Images
+        - Rendering
+        - Export
+      properties:
+
+        - type: OpenApi
+          url: openapi/figma-images-api-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/figma-images-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/figma-images-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/figma-images-api-api-sandbox-backstage.yml
+
+    - aid: figma:me-api
+      name: Figma Me API
+      description: >-
+        Retrieve profile information for the currently authenticated Figma
+        user, including name, email, and account details.
+      tags:
+        - Users
+        - Authentication
+      properties:
+
+        - type: OpenApi
+          url: openapi/figma-me-api-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/figma-me-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/figma-me-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/figma-me-api-api-sandbox-backstage.yml
+
+    - aid: figma:payments-api
+      name: Figma Payments API
+      description: >-
+        Manage payments for Figma plugins and widgets. Retrieve payment
+        status and transaction information for monetized Figma community
+        resources.
+      tags:
+        - Payments
+        - Plugins
+      properties:
+
+        - type: OpenApi
+          url: openapi/figma-payments-api-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/figma-payments-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/figma-payments-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/figma-payments-api-api-sandbox-backstage.yml
+
+    - aid: figma:projects-api
+      name: Figma Projects API
+      description: >-
+        List and manage projects within Figma teams. Retrieve project
+        metadata and enumerate the files contained within each project.
+      tags:
+        - Projects
+        - Teams
+      properties:
+
+        - type: OpenApi
+          url: openapi/figma-projects-api-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/figma-projects-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/figma-projects-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/figma-projects-api-api-sandbox-backstage.yml
+
+    - aid: figma:styles-api
+      name: Figma Styles API
+      description: >-
+        Retrieve published styles from Figma team libraries, including color,
+        text, effect, and grid styles. Inspect style properties and metadata
+        for design system tooling.
+      tags:
+        - Styles
+        - Design Systems
+      properties:
+
+        - type: OpenApi
+          url: openapi/figma-styles-api-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/figma-styles-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/figma-styles-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/figma-styles-api-api-sandbox-backstage.yml
+
+    - aid: figma:teams-api
+      name: Figma Teams API
+      description: >-
+        Manage Figma team resources including team projects, members, and
+        webhooks. Retrieve team-level component and style libraries.
+      tags:
+        - Teams
+        - Webhooks
+        - Keys
+      properties:
+
+        - type: OpenApi
+          url: openapi/figma-teams-api-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/figma-teams-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/figma-teams-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/figma-teams-api-api-sandbox-backstage.yml
+
+common:
+
+  - type: Summary
+    data:
+
+      numberOfPaths: 12
+      numberOfOperations: 13
+      numberOfReadOperations: 10
+      numberOfWriteOperations: 3
+      numberOfSchemas: 111
+      numberOfResponses: 67
+      numberOfParameters: 32
+      numberOfExamples: 45
+      numberOfRequestBodies: 2
+      numberOfHeaders: 0
+      tags:
+        - Activity Logs
+        - Component Sets
+        - Dev Resources
+        - Files
+        - Images
+        - Keys
+        - Library Analytics
+        - Me
+        - Payments
+        - Projects
+        - Styles
+        - Teams
+        - Users
+        - Webhooks
+      operations:
+        - Create Dev Resources
+        - Delete Dev Resource
+        - Get Activity Logs
+        - Get Component Set
+        - Get Current User
+        - Get Files In A Project
+        - Get Library Analytics Usage Data
+        - Get Payments
+        - Get Style
+        - Get Team Webhooks
+        - Render Images Of File Nodes
+        - Update Dev Resources
+
+  - type: GitHubHttpUrl
+    url: https://github.com/naftiko/figma-sandbox
+
+  - type: GitHubSshUrl
+    url: git@github.com:naftiko/figma-sandbox.git
+
+  - type: GitHubIssues
+    url: https://github.com/naftiko/figma-sandbox/issues
+
+  - type: GitHubDiscussions
+    url: https://github.com/orgs/naftiko/discussions
+
+  - type: Standards
+    data:
+
+      - name: APIs.json
+        description: This uses the APIs.json
+        docUrl: http://apisjson.org/
+
+      - name: OpenAPI
+        description: This uses OpenAPI to define access to all HTTP APIs.
+        docUrl: https://spec.openapis.org/oas/latest.html
+
+      - name: JSON Schema
+        description: This uses JSON Schema to define and validate all entities used.
+        docUrl: https://json-schema.org/specification
+
+      - name: Model Context Protocol
+        description: This uses MCP expressed as JSON schema to define each MCP server.
+        docUrl: https://modelcontextprotocol.io/
+
+      - name: Bruno Collections
+        description: This uses Bruno Collections to define each executable HTTP API integration.
+        docUrl: https://docs.usebruno.com/
+
+      - name: Bruno Environments
+        description: This uses Bruno Environments to store keys for each API to use in automation.
+        docUrl: https://docs.usebruno.com/secrets-management/overview
+
+      - name: API Commons
+        description: This uses an API Commons schema to define the plans and rate limits.
+        docUrl: https://apicommons.org/
+
+  - type: Services
+    data:
+
+    - aid: figma
+      name: Figma
+      description: >-
+        Figma is a collaborative design platform that enables teams to create,
+        prototype, and hand off digital experiences together in real-time.
+      docUrl: https://www.figma.com/developers/api
+      apisJson: >-
+        https://raw.githubusercontent.com/api-evangelist/figma/refs/heads/main/apis.yml
+      loginUrl: https://www.figma.com/login
+
+maintainers:
+
+  - FN: Kin Lane
+    email: kinlane@naftiko.io
