@@ -31,6 +31,8 @@ apis:
         Retrieve activity logs for a Figma organization. Track user actions,
         file events, and administrative changes for auditing and compliance
         purposes.
+      humanURL: https://github.com/naftiko/figma-sandbox/
+      baseURL: http://localhost:8080/rest/
       tags:
         - Activity Logs
         - Auditing
@@ -51,6 +53,8 @@ apis:
         Access analytics data for Figma libraries and design system usage.
         Retrieve metrics on component adoption, library usage patterns, and
         design system health across an organization.
+      humanURL: https://github.com/naftiko/figma-sandbox/
+      baseURL: http://localhost:8080/rest/        
       tags:
         - Library Analytics
         - Design Systems
@@ -71,6 +75,8 @@ apis:
         The core Figma REST API providing access to files, components, styles,
         comments, webhooks, and other Figma platform resources. This is the
         primary general-purpose API for integrating with Figma.
+      humanURL: https://github.com/naftiko/figma-sandbox/
+      baseURL: http://localhost:8080/rest/        
       tags:
         - Files
         - Components
@@ -93,6 +99,8 @@ apis:
         Retrieve metadata for component sets (variant groups) published in
         Figma team libraries. Inspect component set properties, variants,
         and documentation.
+      humanURL: https://github.com/naftiko/figma-sandbox/
+      baseURL: http://localhost:8080/rest/        
       tags:
         - Component Sets
         - Design Systems
@@ -113,6 +121,8 @@ apis:
         Create, update, and delete dev resources linked to Figma design nodes.
         Dev resources connect design elements to code repositories, documentation,
         and other development artifacts.
+      humanURL: https://github.com/naftiko/figma-sandbox/
+      baseURL: http://localhost:8080/rest/        
       tags:
         - Dev Resources
         - Developer Handoff
@@ -133,6 +143,8 @@ apis:
         Access Figma file data including document structure, nodes, components,
         and metadata. List files within projects and retrieve detailed file
         contents for integration and automation workflows.
+      humanURL: https://github.com/naftiko/figma-sandbox/
+      baseURL: http://localhost:8080/rest/        
       tags:
         - Files
         - Projects
@@ -153,6 +165,8 @@ apis:
         Render images from Figma file nodes in various formats including PNG,
         JPG, SVG, and PDF. Export design assets programmatically for use in
         development and content pipelines.
+      humanURL: https://github.com/naftiko/figma-sandbox/
+      baseURL: http://localhost:8080/rest/        
       tags:
         - Images
         - Rendering
@@ -173,6 +187,8 @@ apis:
       description: >-
         Retrieve profile information for the currently authenticated Figma
         user, including name, email, and account details.
+      humanURL: https://github.com/naftiko/figma-sandbox/
+      baseURL: http://localhost:8080/rest/        
       tags:
         - Users
         - Authentication
@@ -193,6 +209,8 @@ apis:
         Manage payments for Figma plugins and widgets. Retrieve payment
         status and transaction information for monetized Figma community
         resources.
+      humanURL: https://github.com/naftiko/figma-sandbox/
+      baseURL: http://localhost:8080/rest/        
       tags:
         - Payments
         - Plugins
@@ -212,6 +230,8 @@ apis:
       description: >-
         List and manage projects within Figma teams. Retrieve project
         metadata and enumerate the files contained within each project.
+      humanURL: https://github.com/naftiko/figma-sandbox/
+      baseURL: http://localhost:8080/rest/        
       tags:
         - Projects
         - Teams
@@ -232,6 +252,8 @@ apis:
         Retrieve published styles from Figma team libraries, including color,
         text, effect, and grid styles. Inspect style properties and metadata
         for design system tooling.
+      humanURL: https://github.com/naftiko/figma-sandbox/
+      baseURL: http://localhost:8080/rest/        
       tags:
         - Styles
         - Design Systems
@@ -251,6 +273,8 @@ apis:
       description: >-
         Manage Figma team resources including team projects, members, and
         webhooks. Retrieve team-level component and style libraries.
+      humanURL: https://github.com/naftiko/figma-sandbox/
+      baseURL: http://localhost:8080/rest/        
       tags:
         - Teams
         - Webhooks
@@ -269,6 +293,7 @@ apis:
 common:
 
   - type: Summary
+    url:  https://github.com/naftiko/figma-sandbox/
     data:
 
       numberOfPaths: 12
@@ -323,6 +348,7 @@ common:
     url: https://github.com/orgs/naftiko/discussions
 
   - type: Standards
+    url:  https://github.com/naftiko/figma-sandbox/
     data:
 
       - name: APIs.json
@@ -354,6 +380,7 @@ common:
         docUrl: https://apicommons.org/
 
   - type: Services
+    url:  https://github.com/naftiko/figma-sandbox/
     data:
 
     - aid: figma
