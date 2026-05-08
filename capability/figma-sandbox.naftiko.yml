@@ -1,0 +1,60 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "Figma Sandbox"
+  description: "Naftiko Sandbox — wraps the Figma API mocks hosted at mocks.naftiko.net. Exposes MCP, REST, and Skill adapters for AI agents and downstream tools."
+  tags:
+    - "Figma"
+    - "Naftiko Sandbox"
+    - MCP
+    - Mocks
+
+binds:
+  - namespace: "sandbox-env"
+    description: "Sandbox bearer token for the Naftiko Framework MCP server."
+    location: "file:///./shared/secrets.yaml"
+    keys:
+      MCP_SERVER_TOKEN: "mcp-server-token"
+
+capability:
+  consumes:
+    - import: figma-activity-logs-api
+      location: ./shared/figma-activity-logs-api-consumes.yml
+
+  exposes:
+    - type: mcp
+      address: "0.0.0.0"
+      port: 3001
+      namespace: figma-sandbox-tools
+      authentication:
+        type: bearer
+        token: "{{MCP_SERVER_TOKEN}}"
+      description: "Figma MCP tools — backed by mocks.naftiko.net"
+      tools:
+        - name: get-activity-logs
+          description: "Get activity logs"
+          call: figma-activity-logs-api.get-activity-logs
+
+    - type: rest
+      address: "0.0.0.0"
+      port: 3002
+      namespace: figma-sandbox-api
+      description: "Figma REST adapter — exposes the same domain as REST resources."
+      resources:
+        - name: get-activity-logs
+          path: "/get-activity-logs"
+          operations:
+            - method: GET
+              call: figma-activity-logs-api.get-activity-logs
+
+    - type: skill
+      address: "0.0.0.0"
+      port: 3003
+      namespace: figma-sandbox-skills
+      description: "Figma skill server for structured agent discovery."
+      groups:
+        - name: read-figma
+          description: "Read-only Figma operations."
+          skills:
+            - name: get-activity-logs
+              call: figma-activity-logs-api.get-activity-logs

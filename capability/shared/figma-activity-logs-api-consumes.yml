@@ -1,0 +1,11 @@
+naftiko: "1.0.0-alpha2"
+consumes:
+  - namespace: figma-activity-logs-api
+    type: http
+    baseUri: "https://mocks.naftiko.net/rest/figma-activity-logs-api/0.21.0"
+    resources:
+      - name: get-activity-logs
+        path: "/v1/activity_logs"
+        operations:
+          - name: get-activity-logs
+            method: GET
